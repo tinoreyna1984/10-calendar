@@ -6,6 +6,7 @@ import {
   onLogin,
   onLogout,
 } from "../redux/slices/auth/authSlice";
+import { onLogoutCalendar } from "../redux/slices/calendar/calendarSlice";
 
 export const useAuthStore = () => {
   const { status, user, errorMessage } = useSelector((state) => state.auth);
@@ -80,6 +81,7 @@ export const useAuthStore = () => {
   const startLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("token-init-date");
+    dispatch(onLogoutCalendar());
     dispatch(onLogout());
   };
 
